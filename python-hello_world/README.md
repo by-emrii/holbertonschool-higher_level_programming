@@ -1,0 +1,1 @@
+This purpose of this directory is for Holberton School's Hello World project tasks

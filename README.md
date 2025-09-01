@@ -1,0 +1,1 @@
+This purpose of this directory is for Holberton School's Python project tasks
