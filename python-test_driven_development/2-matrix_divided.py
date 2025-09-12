@@ -36,10 +36,10 @@ def matrix_divided(matrix, div):
                     "of integers/floats"
                     )
 
-    if div == 0:
-        raise ZeroDivisionError("division by zero")
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
+    elif div == 0:
+        raise ZeroDivisionError("division by zero")
 
     # divide all elems and round to 2 decimals
     new_matrix = [[round(elem / div, 2)for elem in row] for row in matrix]
