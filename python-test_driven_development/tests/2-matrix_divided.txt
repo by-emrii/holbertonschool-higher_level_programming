@@ -17,6 +17,9 @@ Tests:
     >>> matrix_divided([[-5, 2.32, -10], [-102, 23.55, 5.23]], 3)
     [[-1.67, 0.77, -3.33], [-34.0, 7.85, 1.74]]
 
+    >>> matrix_divided([[1, 2, 3]], float("inf"))
+    [[0.0, 0.0, 0.0]]
+
     >>> matrix_divided([[1, 2], [3, "4"]], 2)
     Traceback (most recent call last):
     ...
@@ -46,3 +49,8 @@ Tests:
     Traceback (most recent call last):
     ...
     TypeError: div must be a number
+
+    >>> matrix_divided([[1, 2, 3]], 0)
+    Traceback (most recent call last):
+    ...
+    ZeroDivisionError: division by zero
