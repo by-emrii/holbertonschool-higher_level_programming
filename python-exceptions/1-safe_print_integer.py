@@ -4,6 +4,6 @@ def safe_print_integer(value):
         if isinstance(value, int):
             print("{:d}".format(value))
             return True
+        return False
     except TypeError:
         print("{} is not an integer".format(value))
-        return False
