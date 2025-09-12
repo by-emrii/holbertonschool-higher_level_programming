@@ -19,6 +19,11 @@ def matrix_divided(matrix, div):
     """
     Divides all elements of a matrix by div and returns a new matrix
     """
+    if matrix is None:
+        raise TypeError("matrix_divided() missing 1 required "
+                        "argument: 'matrix'")
+    if div is None:
+        raise TypeError("matrix_divided() missing 1 required argument: 'div'")
 
     row_len = len(matrix[0])
     for row in matrix:
@@ -27,8 +32,9 @@ def matrix_divided(matrix, div):
         for elem in row:
             if not isinstance(elem, (int, float)):
                 raise TypeError(
-                    "matrix must be a matrix (list of lists) \
-                        of integers/floats")
+                    "matrix must be a matrix (list of lists) "
+                    "of integers/floats"
+                    )
 
     if div == 0:
         raise ZeroDivisionError("division by zero")
