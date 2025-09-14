@@ -13,9 +13,10 @@ Tests:
 
     >>> text_indentation("  Hello world. How are you?")
     Hello world.
-
+    <BLANKLINE>
     How are you?
-
+    <BLANKLINE>
+    
     >>> text_indentation(123)
     Traceback (most recent call last):
     ...
