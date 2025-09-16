@@ -49,6 +49,9 @@ class Square:
         return self.__size**2
 
     def my_print(self):
+        """
+        prints in stdout the square with '#'
+        """
         if self.__size == 0:
             print("")
         else:
