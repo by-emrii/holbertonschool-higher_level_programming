@@ -78,6 +78,7 @@ class Square:
         considering the position
         """
         if self.__size == 0:
+            print("")
             return
 
         for _ in range(self.position[1]):
