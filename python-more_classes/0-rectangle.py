@@ -5,8 +5,8 @@ This is the "0-rectangle" class module.
 
 
 class Rectangle:
+    """
+    Initialisation of object instance with in class Rectangle
+    """
     def __init__(self):
-        """
-        Initialisation of object instance with in class Rectangle
-        """
-        pass
+        self.__dict__ = {}
