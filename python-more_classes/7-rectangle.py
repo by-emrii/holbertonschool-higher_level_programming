@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is the "5-rectangle" class module.
+This is the "7-rectangle" class module.
 """
 
 
@@ -8,6 +8,9 @@ class Rectangle:
     """
     Rectangle with width and height attr
     """
+    number_of_instances = 0
+    print_symbol = '#'
+
     def __init__(self, width=0, height=0):
         """
         Initialisation of a new instance from class Rectangle
@@ -34,6 +37,9 @@ class Rectangle:
         if height < 0:
             raise ValueError("height must be >= 0")
         self.__height = height
+
+        # increment when instance/obj is created
+        Rectangle.number_of_instances += 1
 
     @property
     def width(self):
@@ -75,11 +81,11 @@ class Rectangle:
         return perimeter
 
     def __str__(self):
-        """ Returns a str representation of the rect using # """
+        """ Returns a str representation of the rect using print_symbol att """
         if self.__width == 0 or self.__height == 0:
             return ""
 
-        row = '#' * self.__width
+        row = str(self.print_symbol) * self.__width
         rectangle = "\n".join([row for _ in range(self.__height)])
         return rectangle
 
@@ -92,4 +98,6 @@ class Rectangle:
 
     def __del__(self):
         """ Delete instance """
+        # decrement when an instance is deleted
+        Rectangle.number_of_instances -= 1
         print("Bye rectangle...")
