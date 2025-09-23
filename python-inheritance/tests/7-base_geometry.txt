@@ -1,0 +1,42 @@
+The ``base_geometry`` module
+======================
+
+Using ``base_geometry``
+-------------------
+
+
+First import ``base_geometry`` from the ``7-base_geometry`` file:
+
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+Tests:
+
+# Create an instance
+>>> bg = BaseGeometry()
+
+>>> bg.area()
+Traceback (most recent call last):
+...
+Exception: area() is not implemented
+
+>>> bg.integer_validator("age", 34)
+
+>>> bg.integer_validator("age", "10")
+Traceback (most recent call last):
+...
+TypeError: age must be an integer
+
+>>> bg.integer_validator("size", -10)
+Traceback (most recent call last):
+...
+ValueError: size must be greater than 0
+
+>>> bg.integer_validator("height", 10.5)
+Traceback (most recent call last):
+...
+TypeError: height must be an integer
+
+>>> bg.integer_validator("size", None)
+Traceback (most recent call last):
+...
+TypeError: size must be an integer
