@@ -28,7 +28,7 @@ class Circle(Shape):
         Args:
         radius (int): radius of circle
         """
-        self.radius = radius
+        self.radius = abs(radius)  # handles neg int, ensure radius always +ve
 
     def area(self):
         return (math.pi * (self.radius ** 2))
