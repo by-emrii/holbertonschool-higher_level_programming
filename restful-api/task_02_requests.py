@@ -5,15 +5,15 @@ This is the "task_02_requests.py" module.
 import requests
 import csv
 
-url = "https://jsonplaceholder.typicode.com/posts"
-response = requests.get(url)
-
 
 def fetch_and_print_posts():
     """
     Fetches all post from JSONPlaceholder
     and print out the titles of all the posts
     """
+    url = "https://jsonplaceholder.typicode.com/posts"
+    response = requests.get(url)
+
     print(f"Status code: {response.status_code}")
 
     if response.status_code == 200:
@@ -28,6 +28,9 @@ def fetch_and_save_posts():
     structure the data into a list of dictionaries,
     write this data into a CSV file
     """
+    url = "https://jsonplaceholder.typicode.com/posts"
+    response = requests.get(url)
+
     if response.status_code == 200:
         data = response.json()
         posts_data = []
