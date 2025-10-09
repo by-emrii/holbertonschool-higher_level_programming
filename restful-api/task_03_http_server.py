@@ -29,14 +29,16 @@ class SimpleAPI(BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"OK".encode())
+            self.wfile.write(b"OK")
 
         else:
             self.send_response(404)
             self.send_header("Content-Type", "text/plain")
             self.end_headers()
-            self.wfile.write(b"Endpoint not found".encode())
+            self.wfile.write(b"Not Found")
 
 
-server = HTTPServer(("localhost", 8000), SimpleAPI)
-server.serve_forever()
+if __name__ == "__main__":
+    print("Server running on http://localhost:8000")
+    server = HTTPServer(("localhost", 8000), SimpleAPI)
+    server.serve_forever()
