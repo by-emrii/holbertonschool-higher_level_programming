@@ -45,9 +45,6 @@ def create_user():
     if not username:
         return jsonify({"error": "Username is required"}), 400
 
-    if username in users:
-        return jsonify({"error": "user already exists"}), 400
-
     # add user to dict
     users[username] = {
         "username": data.get("username"),
