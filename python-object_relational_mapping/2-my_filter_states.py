@@ -4,7 +4,7 @@ import MySQLdb
 import sys
 
 
-def list_all_states_with_name_starting_N(username, password, database, state_name_searched):
+def list_all_states(username, password, db, state_name_searched):
     """
     Connects to MySQL and displays all values in the states table
     where state name searched matches the argument
@@ -14,10 +14,12 @@ def list_all_states_with_name_starting_N(username, password, database, state_nam
         port=3306,
         user=username,
         passwd=password,
-        db=database
+        db=db
     )
     cursor = db.cursor()
-    query = "SELECT * FROM states WHERE name = '{}'".format(state_name_searched)
+    query = (
+        "SELECT * FROM states "
+        "WHERE name = '{}'".format(state_name_searched))
     cursor.execute(query)
 
     rows = cursor.fetchall()
@@ -29,4 +31,4 @@ def list_all_states_with_name_starting_N(username, password, database, state_nam
 
 
 if __name__ == "__main__":
-    list_all_states_with_name_starting_N(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
+    list_all_states(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4])
