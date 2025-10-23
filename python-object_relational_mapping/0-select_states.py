@@ -3,6 +3,7 @@
 import MySQLdb
 import sys
 
+
 def list_all_states(username, password, database):
     """ list all the states in the database """
     db = MySQLdb.connect(
@@ -19,6 +20,7 @@ def list_all_states(username, password, database):
 
     for row in rows:
         print(row)
+
 
 if __name__ == "__main__":
     list_all_states(sys.argv[1], sys.argv[2], sys.argv[3])
