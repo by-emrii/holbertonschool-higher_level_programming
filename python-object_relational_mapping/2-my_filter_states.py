@@ -19,7 +19,7 @@ def list_all_states(username, password, db, state_name_searched):
     cursor = db.cursor()
     query = (
         "SELECT * FROM states "
-        "WHERE name = '{}'".format(state_name_searched))
+        "WHERE BINARY name = '{}'".format(state_name_searched))
     cursor.execute(query)
 
     rows = cursor.fetchall()
