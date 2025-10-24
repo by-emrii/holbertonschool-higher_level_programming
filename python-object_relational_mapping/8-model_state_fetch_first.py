@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-lists all state objects from the database hbtn_0e_6_usa
+lists first state object from the database hbtn_0e_6_usa
 """
 
 from sqlalchemy.orm import sessionmaker, declarative_base
@@ -29,8 +29,11 @@ if __name__ == "__main__":
     # query first state
     state = session.query(State).first()
 
-    # print results in format
-    print(f"{state.id}: {state.name}")
+    # print results in format, handle empty table
+    if state is None:
+        print("Nothing")
+    else:
+        print(f"{state.id}: {state.name}")
 
     # close session
     session.close()
