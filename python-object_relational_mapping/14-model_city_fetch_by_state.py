@@ -26,7 +26,7 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # query states with the letter a
+    # query cities
     cities = (
         session.query(City)
         .order_by(City.id).all()
