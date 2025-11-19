@@ -4,7 +4,7 @@
 Python hides many low-level details, but understanding how it manages objects, memory, and variable references can make you a stronger programmer. This post explores key concepts such as object identity, type, mutability, and how Python handles variable assignment and function arguments.
 
 ## ID and Type
-Every object in Python has an identity and a type. The identity is a unique identifier you can see with id(), essentially pointing to the object’s location in memory. The type, returned by type(), tells you what kind of object you’re dealing with.
+Every object in Python has an identity and a type. The identity is a unique identifier you can see with `id()`, essentially pointing to the object’s location in memory. The type, returned by `type()`, tells you what kind of object you’re dealing with.
 
 ```python
 x = 42 
