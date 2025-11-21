@@ -1,3 +1,4 @@
+![Python pic](python.jpg)
 # Python Objects: Memory, Mutibility and how Python handles Variables
 
 ## Introduction
@@ -14,6 +15,9 @@ print(type(x)) # Output: <class 'int'>
 
 ## Mutable Objects
 Mutable objects are objects whose content can be changed without creating a new object. Lists, dictionaries, sets, and byte arrays are common examples. Changes to a mutable object through one variable are visible to all aliases.
+
+**Aliases**: Multiple variables can point to the same object in memory. Any in-place modification through one variable affects all other aliases.
+
 ```python
 a = [1, 2, 3] 
 b = a # b points to the same list of a
@@ -22,8 +26,17 @@ print(a) # Output: [1, 2, 3, 4]
 print(id(a) == id(b)) # True, same object in memory
 ```
 
+**Memory Schema for Mutable Object**
+
+a ---> [1, 2, 3, 4] <--- b
+
+Both `a` and `b` reference the same object in memory.
+
+
 ## Immutable Objects
 Immutable objects cannot be changed once created. Numbers, strings, tuples, frozen sets, and bytes fall into this category. Any “modification” actually creates a new object.
+
+
 ```bash
 x = 100 
 y = x 
@@ -33,8 +46,50 @@ print(y) # 101
 print(id(x), id(y)) # different IDs
 ```
 
+**Memory storage of immutable objects**: When you create an immutable object, Python stores it in a specific memory location. If you assign the same value to another variable, Python may reuse the same object for efficiency (especially small integers and interned strings).
+
+x ---> 100
+y ---> 101
+
+`x` still points to `100`, while `y` now points to a new object `101`.
+
+## Memory Schema Examples
+**Example 1: Mutable list**
+```python
+lst1 = [1, 2] 
+lst2 = lst1 
+lst2.append(3) 
+# Memory schema: 
+# # lst1 ---> [1, 2, 3] <--- lst2 
+# # Both names reference the same list object
+```
+
+**Example 2: Immutable string**
+```python
+s1 = "hello"
+s2 = s1
+s2 += " world"
+
+# Memory schema:
+# s1 ---> "hello"
+# s2 ---> "hello world"
+# s2 points to a new object after modification
+```
+
+**Tuple containing a mutable object**
+```python
+t = ([1, 2], 3)
+t[0].append(3)
+t ---> ([1, 2, 3], 3)
+        ^
+        |
+   inner list modified
+
+The tuple is immutable, but the list inside it can change.
+```
+
 ## Why It Matters: Mutable vs Immutable
-Python treats mutable and immutable objects differently. Assigning a new variable to an immutable object just points it to the same object, but “modifying” it creates a new object. Mutable objects can be updated in place.
+Python treats mutable and immutable objects differently. Assigning a new variable to an immutable object just points it to the same object, but “modifying” it creates a new object. Mutable objects can be updated in place. Mutable objects can be updated in place, affecting all aliases.
 
 **Mutable example**
 ```python
@@ -73,8 +128,10 @@ print(x) # 5 - unchanged
 print(y) # 6 - new object
 ```
 
-## Integer Pre-allocation
-Python pre-creates integers from -5 to 256 (`NSMALLNEGINTS` and `NSMALLPOSINTS`) for efficiency. Frequently used small numbers are reused rather than recreated.
+## Integer Pre-allocation and NSMALLPOSINTS / NSMALLNEGINTS
+Python pre-creates integers from -5 to 256 (`NSMALLNEGINTS` and `NSMALLPOSINTS`) for efficiency. 
+
+**Why these ranges?** Because small integers are used frequently in programs. Pre-allocating them saves memory and improves performance.
 
 ```python
 a = 100 
@@ -85,6 +142,8 @@ c = 1000
 d = 1000 
 print(c is d) # False - new objects created
 ```
+
+When Python encounters a number in the pre-allocated range, it reuses the same object instead of creating a new one. This is why `a is b` can be True for small integers but False for large ones.
 
 ## Tuples and Frozen Sets: Special Case
 Even though tuples and frozen sets are immutable, they can contain mutable objects. Modifying the inner object does not change the tuple itself.
