@@ -28,7 +28,10 @@ print(id(a) == id(b)) # True, same object in memory
 
 **Memory Schema for Mutable Object**
 
+
+```text
 a ---> [1, 2, 3, 4] <--- b
+```
 
 Both `a` and `b` reference the same object in memory.
 
@@ -48,8 +51,11 @@ print(id(x), id(y)) # different IDs
 
 **Memory storage of immutable objects**: When you create an immutable object, Python stores it in a specific memory location. If you assign the same value to another variable, Python may reuse the same object for efficiency (especially small integers and interned strings).
 
+
+```text
 x ---> 100
 y ---> 101
+```
 
 `x` still points to `100`, while `y` now points to a new object `101`.
 
